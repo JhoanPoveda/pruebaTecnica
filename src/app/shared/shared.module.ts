@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalComponent } from './components/modal/modal.component';
 import { SearchBoxComponent } from './components/searchBox/searchBox.component';
+import { PrimengComponentsModule } from './primeNg/primeNg.module';
 import { InvocesService } from './services/invoces.service';
 
 
@@ -13,7 +14,8 @@ import { InvocesService } from './services/invoces.service';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    PrimengComponentsModule
   ],
   providers: [InvocesService],
   declarations:[SearchBoxComponent, ModalComponent],

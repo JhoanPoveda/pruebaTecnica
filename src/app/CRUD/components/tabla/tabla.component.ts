@@ -15,6 +15,9 @@ export class TablaComponent implements OnInit {
 
   isEdit = false;
 
+  meansPayment! : any[];
+  states! : any[];
+
   newData = [
     {
       commerce: {
@@ -38,14 +41,13 @@ export class TablaComponent implements OnInit {
     }
   ]
 
-
-
   constructor(
     private invoicesServices : InvocesService  ) {}
 
   ngOnInit() {
     this.invoices = this.invoicesServices.getInvoicesData();
-    console.log(this.invoices);
+    this.meansPayment = this.invoicesServices.getPayment();
+    this.states = this.invoicesServices.getStates();
   }
   seleccionarInvoice(invoice: IInvoices): void {
     this.invocesSeleted = { ...invoice }; // Hacemos una copia para evitar modificar directamente el objeto original
@@ -56,6 +58,10 @@ export class TablaComponent implements OnInit {
     this.emitInvoce?.emit(invoice);
     this.isEdit = true;
     this.title = "Editar factura"
+  }
+  createInvoice(){
+    this.isEdit = true;
+    this.title = "Nueva factura"
   }
 
   onSave(newData : any){

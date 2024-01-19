@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CRUDModule } from './CRUD/CRUD.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { PrimengComponentsModule } from './shared/primeNg/primeNg.module';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -17,7 +18,8 @@ import { SharedModule } from './shared/shared.module';
     CRUDModule,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PrimengComponentsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

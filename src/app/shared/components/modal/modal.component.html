@@ -1,16 +1,94 @@
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content" style="width: 600px;">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">{{title}}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action=""></form>
+      <ng-container>
+          <form [formGroup]="selectedInvoiceForm">
+            <div class="d-flex">
+              <div class="row">
+                <h5>Comercial</h5>
+                <div class="col justify-content-between mb-2">
+                  <input type="number" id="code" name="code" required
+                  placeholder="Código">
+                </div>
+                <div class="col justify-content-between mb-2">
+                  <input type="text" id="name" name="name" required
+                  placeholder="Nombre" maxlength="30">
+                </div>
+                <div class="col justify-content-between mb-2">
+                  <input type="text" id="nit" name="nit" required
+                  placeholder="Nit">
+                </div>
+                <div class="col justify-content-between mb-2">
+                  <input type="text" id="address" name="address" required
+                  placeholder="Dirección" maxlength="50">
+                </div>
+              </div>
+            </div>
+            <div class="d-flex">
+              <div class="row">
+                <h5>Transferencia</h5>
+                <div class="col justify-content-between mb-2">
+                  <input type="number" id="code" name="code" required
+                  placeholder="Código">
+                </div>
+                <div class="col justify-content-between mb-2">
+                  <p-dropdown
+                  formControlName="selectedInvoice.trans.meansPayment?.code "
+                  [options]="meansPayment"
+                  optionLabel="description"
+                  optionValue="code"
+                  [showClear]="true"
+                  placeholder="Metodo de pago">
+                </p-dropdown>
+                </div>
+                <div class="col justify-content-between mb-2">
+                  <p-dropdown
+                  formControlName="selectedInvoice.trans.meansPayment?.code "
+                  [options]="states"
+                  optionLabel="description"
+                  optionValue="code"
+                  [showClear]="true"
+                  placeholder="Estado">
+                </p-dropdown>
+                </div>
+                <div class="col justify-content-between mb-2">
+                  <input type="text" id="total" name="total" required
+                  placeholder="Total">
+                </div>
+                <div class="col justify-content-between mb-2">
+                  <input type="text" id="date" name="date" required
+                  placeholder="Fecha" maxlength="50">
+                </div>
+              </div>
+            </div>
+            <div class="d-flex">
+              <div class="row">
+                <h5>Usuario</h5>
+                <div class="col justify-content-between mb-2">
+                  <input type="number" id="id" name="id" required
+                  placeholder="ID">
+                </div>
+                <div class="col justify-content-between mb-2">
+                  <input type="text" id="name" name="name" required
+                  placeholder="Nombre" maxlength="30">
+                </div>
+                <div class="col justify-content-between mb-2">
+                  <input type="text" id="mail" name="mail" required
+                  placeholder="Email">
+                </div>
+              </div>
+            </div>
+        </form>
+      </ng-container>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Guardar</button>
       </div>
     </div>
   </div>

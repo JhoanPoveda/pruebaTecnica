@@ -204,6 +204,39 @@ export const invoicesMock: IInvoices[] = [
   }
 ]
 
+export const meansPaymentMock = [
+  {
+    id: 32,
+    description: 'Tarjeta de crédito'
+  },
+  {
+    id: 29,
+    description: 'PSE'
+  },
+  {
+    id: 41,
+    description: 'Gana'
+  },
+  {
+    id: 42,
+    description: 'Caja'
+  },
+]
+export const statesMock = [
+  {
+    id: 1,
+    description: 'Aprobado'
+  },
+  {
+    id: 1000,
+    description: 'Rechazado'
+  },
+  {
+    id: 999,
+    description: 'Pendiente'
+  },
+]
+
 export const InvoicesResponseMock = new BehaviorSubject(
   JSON.parse(JSON.stringify(invoicesMock))
 );
