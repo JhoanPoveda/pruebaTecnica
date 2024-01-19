@@ -5,8 +5,10 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:href": "ng build --base-href .",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "copy:dist": "copyfiles dist/prueba-tecnica/* ./docs"
   },
   "private": true,
   "dependencies": {
