@@ -75,7 +75,10 @@ export class TablaComponent implements OnInit {
   }
 
   deleteInvoice(invoice : IInvoices){
+    this.isEdit = false;
     this.isDelete = true;
+    this.title = `Eliminar factura`;
+    this.selectedInvoice = invoice
   }
 
 

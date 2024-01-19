@@ -59,4 +59,14 @@ export class InvocesService {
     localStorage.setItem(this.localStorageKey, JSON.stringify(this.data));
   }
 
+  saveNewInvoice(newInvoice: any): void {
+    // Obtén la lista actual de facturas del localStorage
+    const invoices = JSON.parse(localStorage.getItem(this.localStorageKey) || '[]');
+
+    // Agrega el nuevo registro
+    invoices.push(newInvoice);
+
+    // Guarda la lista actualizada en el localStorage
+    localStorage.setItem(this.localStorageKey, JSON.stringify(invoices));
+  }
 }

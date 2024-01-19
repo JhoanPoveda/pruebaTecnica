@@ -86,8 +86,8 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Guardar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="goBack()">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="addNewInvoice()">Guardar</button>
       </div>
       </ng-container>
       <ng-container *ngIf="!newInvoice && !isDelete">
@@ -96,16 +96,16 @@
           <div class="row">
             <h5>Comercial</h5>
             <div class="col justify-content-between mb-2">
-              <span>{{selectedInvoice.commerce.code}}</span>
+              <span>{{selectedInvoice?.commerce?.code}}</span>
             </div>
             <div class="col justify-content-between mb-2">
-              <span>{{selectedInvoice.commerce.name}}</span>
+              <span>{{selectedInvoice?.commerce?.name}}</span>
             </div>
             <div class="col justify-content-between mb-2">
-              <span>{{selectedInvoice.commerce.nit}}</span>
+              <span>{{selectedInvoice?.commerce?.nit}}</span>
             </div>
             <div class="col justify-content-between mb-2">
-              <span>{{selectedInvoice.commerce.address}}</span>
+              <span>{{selectedInvoice?.commerce?.address}}</span>
             </div>
           </div>
         </div>
@@ -113,19 +113,19 @@
           <div class="row">
             <h5>Transferencia</h5>
             <div class="col justify-content-between mb-2">
-              <span>{{selectedInvoice.trans.code}}</span>
+              <span>{{selectedInvoice?.trans?.code}}</span>
             </div>
             <div class="col justify-content-between mb-2">
-              <span>{{selectedInvoice.trans.meansPayment?.description}}</span>
+              <span>{{selectedInvoice?.trans?.meansPayment?.description}}</span>
             </div>
             <div class="col justify-content-between mb-2">
-              <span>{{selectedInvoice.trans.state?.description}}</span>
+              <span>{{selectedInvoice?.trans?.state?.description}}</span>
             </div>
             <div class="col justify-content-between mb-2">
-              <span>{{selectedInvoice.trans.total}}</span>
+              <span>{{selectedInvoice?.trans?.total}}</span>
             </div>
             <div class="col justify-content-between mb-2">
-              <span>{{selectedInvoice.trans.date}}</span>
+              <span>{{selectedInvoice?.trans?.date}}</span>
             </div>
           </div>
         </div>
@@ -133,30 +133,29 @@
           <div class="row">
             <h5>Usuario</h5>
             <div class="col justify-content-between mb-2">
-              <span>{{selectedInvoice.user.id}}</span>
+              <span>{{selectedInvoice?.user?.id}}</span>
             </div>
             <div class="col justify-content-between mb-2">
-              <span>{{selectedInvoice.user.name}}</span>
+              <span>{{selectedInvoice?.user?.name}}</span>
             </div>
             <div class="col justify-content-between mb-2">
-              <span>{{selectedInvoice.user.mail}}</span>
+              <span>{{selectedInvoice?.user?.mail}}</span>
             </div>
           </div>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Guardar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="goBack()">Cancelar</button>
       </div>
       </ng-container>
       <ng-container *ngIf="isDelete && !newInvoice">
         <div class="modal-body">
-        <h3>Eliminar factura</h3>
-        <span>Esta seguro que desea eliminar la factura {{invoiceSelected.id}}</span>
+        <h3>Factura #{{selectedInvoice?.id}}</h3>
+        <span>Esta seguro que desea eliminar la factura {{selectedInvoice?.id}}</span>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary">Guardar</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="goBack()">Cancelar</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="removeInvoce(selectedInvoice?.id)">Eliminar</button>
         </div>
       </ng-container>
       </div>

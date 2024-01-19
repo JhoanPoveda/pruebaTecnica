@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
-import { EmailValidator, FormBuilder, FormGroup } from '@angular/forms';
+import { EmailValidator, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IInvoices } from '../../Interfaces/IInvoces.interface';
 import { InvocesService } from '../../services/invoces.service';
 
@@ -10,7 +10,7 @@ import { InvocesService } from '../../services/invoces.service';
 })
 export class ModalComponent implements OnInit {
 @Input() public title? : string;
-@Input() public selectedInvoice! : IInvoices;
+@Input() public selectedInvoice? : IInvoices;
 @Output() public emitInvoiceForm = new EmailValidator;
 @Input() public meansPayment? : any[];
 @Input() public states? : any[];
@@ -49,6 +49,7 @@ public invoiceData!: IInvoices;
   constructor(private readonly fb: FormBuilder, private invocesService : InvocesService) { }
 
   ngOnInit() {
+    this.selectedInvoiceForm = this.createInvoiceForm();
     console.log(this.selectedInvoice)
     // this.selectedInvoiceForm = this.createForm();
 
@@ -58,23 +59,42 @@ public invoiceData!: IInvoices;
     })
   }
 
-  // public createForm(): FormGroup {
-  //   let newFormInstance = this.fb.group({
-  //     commerceCode: [this.selectedInvoice.commerce.code || '', [Validators.required]],
-  //     commerceName: [this.selectedInvoice.commerce.name || '', [Validators.required]],
-  //     commerceNit: [this.selectedInvoice.commerce.nit || '', [Validators.required]],
-  //     commerceAddress: [this.selectedInvoice.commerce.address || '', [Validators.required]],
-  //     transCode: [this.selectedInvoice.trans.code || '', [Validators.required]],
-  //     transMeansPayment: [this.selectedInvoice.trans.meansPayment?.code || '', [Validators.required]],
-  //     transState: [this.selectedInvoice.trans.state.code || '', [Validators.required]],
-  //     transTotal: [this.selectedInvoice.trans.total || '', [Validators.required]],
-  //     transDate: [this.selectedInvoice.trans.date || '', [Validators.required]],
-  //     userId: [this.selectedInvoice.user.id || '', [Validators.required]],
-  //     userName: [this.selectedInvoice.user.name || '', [Validators.required]],
-  //     userMail: [this.selectedInvoice.user.mail || '', [Validators.required]],
-  //   })
-  //   return newFormInstance;
-  // }
+  createInvoiceForm(): FormGroup {
+    return this.fb.group({
+      // Define los controles aquí según tus necesidades
+      commerce: this.fb.group({
+        code: [null, [Validators.required]],
+        name: [null, [Validators.required, Validators.maxLength(30)]],
+        nit: [null, [Validators.required]],
+        address: [null, [Validators.required, Validators.maxLength(50)]],
+      }),
+      trans: this.fb.group({
+        code: [null, [Validators.required]],
+        meansPayment: [null, [Validators.required]],
+        state: [null, [Validators.required]],
+        total: [null, [Validators.required]],
+        date: [null, [Validators.required, Validators.maxLength(50)]],
+      }),
+      user: this.fb.group({
+        id: [null, [Validators.required]],
+        name: [null, [Validators.required, Validators.maxLength(30)]],
+        mail: [null, [Validators.required]],
+      }),
+    });
+  }
+
+  addNewInvoice() {
+    const newInvoice = {
+      id: Date.now(),
+      ...this.selectedInvoiceForm.value,
+    };
+
+    // Guarda el nuevo registro usando el servicio
+    this.invocesService.saveNewInvoice(newInvoice);
+
+    // Puedes restablecer el formulario después de agregar el nuevo registro si es necesario
+    this.selectedInvoiceForm.reset();
+  }
 
   // private updateForm(): void {
   //   this.selectedInvoiceForm.setValue({
@@ -97,8 +117,12 @@ public invoiceData!: IInvoices;
     console.log('Guardar cambios:', this.selectedInvoiceForm.value);
   }
 
-  removeInvoce() {
-  this.invocesService.removeInvoice(this.invoiceSelected.id);
+  removeInvoce(id : any) {
+  this.invocesService.removeInvoice(id);
+  }
+
+  goBack(){
+    this.selectedInvoice = undefined;
   }
 
 }
