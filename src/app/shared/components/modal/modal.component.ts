@@ -13,8 +13,30 @@ export class ModalComponent implements OnInit {
 @Output() public emitInvoiceForm = new EmailValidator;
 @Input() public meansPayment? : any[];
 @Input() public states? : any[];
+@Input() public newInvoice = true;
 
 paymentSeled! : string;
+
+data = {
+  commerce: {
+    code: 1,
+    name: 'Comercio de ropa',
+    nit: '1452',
+    address: 'Calle 30 # 67-89'
+  },
+  trans: {
+    code: 12,
+    meansPayment: { code: 32, description: 'Tarjeta de crédito' },
+    state: { code: 1, description: 'Aprobado' },
+    total: 10,
+    date: '10/1/2024'
+  },
+  user: {
+    id: 101010,
+    name: 'Stiven Rojas',
+    mail: 'stiven@yomail.com'
+  }
+}
 
 selectedInvoiceForm!: FormGroup;
 public invoiceData!: IInvoices;
@@ -23,6 +45,7 @@ public invoiceData!: IInvoices;
 
   ngOnInit() {
     this.selectedInvoiceForm = this.instancesForm();
+    this.selectedInvoice = this.data
   }
 
   public instancesForm(): FormGroup {

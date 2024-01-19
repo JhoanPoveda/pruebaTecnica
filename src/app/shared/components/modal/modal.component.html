@@ -6,7 +6,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <ng-container>
+      <ng-container *ngIf="newInvoice">
           <form [formGroup]="selectedInvoiceForm">
             <div class="d-flex">
               <div class="row">
@@ -84,6 +84,59 @@
               </div>
             </div>
         </form>
+      </ng-container>
+      <ng-container *ngIf="!newInvoice">
+        <div class="d-flex">
+          <div class="row">
+            <h5>Comercial</h5>
+            <div class="col justify-content-between mb-2">
+              <span>{{selectedInvoice.commerce.code}}</span>
+            </div>
+            <div class="col justify-content-between mb-2">
+              <span>{{selectedInvoice.commerce.name}}</span>
+            </div>
+            <div class="col justify-content-between mb-2">
+              <span>{{selectedInvoice.commerce.nit}}</span>
+            </div>
+            <div class="col justify-content-between mb-2">
+              <span>{{selectedInvoice.commerce.address}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex">
+          <div class="row">
+            <h5>Transferencia</h5>
+            <div class="col justify-content-between mb-2">
+              <span>{{selectedInvoice.trans.code}}</span>
+            </div>
+            <div class="col justify-content-between mb-2">
+              <span>{{selectedInvoice.trans.meansPayment?.description}}</span>
+            </div>
+            <div class="col justify-content-between mb-2">
+              <span>{{selectedInvoice.trans.state?.description}}</span>
+            </div>
+            <div class="col justify-content-between mb-2">
+              <span>{{selectedInvoice.trans.total}}</span>
+            </div>
+            <div class="col justify-content-between mb-2">
+              <span>{{selectedInvoice.trans.date}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex">
+          <div class="row">
+            <h5>Usuario</h5>
+            <div class="col justify-content-between mb-2">
+              <span>{{selectedInvoice.user.id}}</span>
+            </div>
+            <div class="col justify-content-between mb-2">
+              <span>{{selectedInvoice.user.name}}</span>
+            </div>
+            <div class="col justify-content-between mb-2">
+              <span>{{selectedInvoice.user.mail}}</span>
+            </div>
+          </div>
+        </div>
       </ng-container>
       </div>
       <div class="modal-footer">

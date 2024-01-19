@@ -64,6 +64,11 @@ export class TablaComponent implements OnInit {
     this.title = "Nueva factura"
   }
 
+  showInvoice(invoice : IInvoices){
+    this.isEdit = false;
+    this.title = `Factura ${{invoice}}`;
+  }
+
   onSave(newData : any){
     this.invoicesServices.saveInvoicesData(this.newData)
   }
