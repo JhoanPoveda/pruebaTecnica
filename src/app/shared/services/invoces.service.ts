@@ -1,10 +1,16 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { invoicesMock, meansPaymentMock, statesMock } from 'src/app/Mocks/invoces.mock';
 import { IInvoices } from '../Interfaces/IInvoces.interface';
 @Injectable({
   providedIn: 'root'
 })
 export class InvocesService {
+  currentInvoice = new BehaviorSubject<IInvoices | null>(null);
+  selectedInovice = this.currentInvoice.asObservable();
+
+
+
   private localStorageKey = 'invoicesData';
   private localStoragePayment = 'payment';
   private localStorageStates = 'states';
@@ -14,7 +20,7 @@ export class InvocesService {
 
   private payment: any[] = JSON.parse(localStorage.getItem(this.localStoragePayment) ?? 'null' ) || meansPaymentMock;
 
-  private states: IInvoices[] = JSON.parse(localStorage.getItem(this.localStorageStates) ?? 'null' ) || statesMock;
+  private states: any[] = JSON.parse(localStorage.getItem(this.localStorageStates) ?? 'null' ) || statesMock;
 
   public getInvoicesData(): IInvoices[] {
     console.log(this.data);
@@ -41,6 +47,16 @@ export class InvocesService {
   public resetInvoicesData(): void {
     this.data = invoicesMock;
     localStorage.removeItem(this.localStorageKey);
+  }
+
+
+  selectInvoice(invoice: IInvoices) {
+    this.currentInvoice.next(invoice);
+  }
+
+  removeInvoice(id : number) : void {
+    this.data = this.data.filter((invoice) => invoice.id !== id);
+    localStorage.setItem(this.localStorageKey, JSON.stringify(this.data));
   }
 
 }

@@ -3,6 +3,7 @@ import { IInvoices } from './../shared/Interfaces/IInvoces.interface';
 
 export const invoicesMock: IInvoices[] = [
   {
+    id: 1,
     commerce: {
       code: 1,
       name: 'Comercio de ropa',
@@ -23,6 +24,7 @@ export const invoicesMock: IInvoices[] = [
     }
   },
   {
+    id: 2,
     commerce: {
       code: 2,
       name: 'Tienda de electrónicos',
@@ -43,6 +45,7 @@ export const invoicesMock: IInvoices[] = [
     }
   },
   {
+    id: 3,
     commerce: {
       code: 3,
       name: 'Supermercado XYZ',
@@ -63,6 +66,7 @@ export const invoicesMock: IInvoices[] = [
     }
   },
   {
+    id: 4,
     commerce: {
       code: 4,
       name: 'Librería ABC',
@@ -83,6 +87,7 @@ export const invoicesMock: IInvoices[] = [
     }
   },
   {
+    id: 5,
     commerce: {
       code: 5,
       name: 'Cafetería Sol',
@@ -103,6 +108,7 @@ export const invoicesMock: IInvoices[] = [
     }
   },
   {
+    id: 6,
     commerce: {
       code: 6,
       name: 'Ferretería ConstruMax',
@@ -123,6 +129,7 @@ export const invoicesMock: IInvoices[] = [
     }
   },
   {
+    id: 7,
     commerce: {
       code: 7,
       name: 'Peluquería Elegance',
@@ -143,6 +150,7 @@ export const invoicesMock: IInvoices[] = [
     }
   },
   {
+    id: 8,
     commerce: {
       code: 8,
       name: 'Farmacia Salud',
@@ -163,6 +171,7 @@ export const invoicesMock: IInvoices[] = [
     }
   },
   {
+    id: 9,
     commerce: {
       code: 9,
       name: 'Restaurante Sabor',
@@ -183,6 +192,7 @@ export const invoicesMock: IInvoices[] = [
     }
   },
   {
+    id: 10,
     commerce: {
       code: 10,
       name: 'Taller Mecánico AutoFix',
